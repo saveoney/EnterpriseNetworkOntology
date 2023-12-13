@@ -1,0 +1,53 @@
+@base <https://www.saveoney.ca/example/small-retail> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pnet: <https://www.saveoney.ca/Network/Physical#> .
+@prefix lnet: <https://www.saveoney.ca/Network/Logical#> .
+
+# Objects
+
+<SurveillanceServer> a pnet:AppServer 
+        , pnet:NetworkAttachedStorage 
+        , owl:Class
+        , skos:Concept ;
+    rdfs:label "Surveillance System"@en ;
+    skos:prefLabel "Surveillance System"@en ;
+    skos:comment "A system that records video and provides those streams to the network."@en .
+
+<PointOfSale> a pnet:Workstation
+        , owl:Class
+        , skos:Concept ;
+    rdfs:label "Point of Sale"@en ;
+    skos:prefLabel "Point of Sale"@en ;
+    skos:altLabel "POS System"@en ;
+    skos:comment "Terminal that is used to process financial interactions."@en .
+
+# Individuals
+
+<isp1Modem> a pnet:Modem .
+
+<firewall1> a pnet:Firewall .
+
+<ap1> a pnet:WirelessAccessPoint .
+
+<nas1> a pnet:NetworkAttachedStorage .
+
+<gigaswitch> a pnet:NetworkSwitch .
+
+<officews> a pnet:Workstation .
+
+<appserver> a pnet:AppServer .
+
+<videoserver> a <SurveillanceServer> .
+
+<multiswitch> a pnet:Switch .
+
+<pos1> a <PointOfSale> .
+
+<pos2> a <PointOfSale> .
+
+<pos3> a <PointOfSale> .

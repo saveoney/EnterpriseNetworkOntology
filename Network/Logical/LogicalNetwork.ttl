@@ -1,0 +1,298 @@
+@base <https://www.saveoney.ca/Network/Logical#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pnet: <https://www.saveoney.ca/Network/Physical#> .
+
+# Ontology Specific
+
+<> a owl:Ontology
+        , skos:ConceptScheme ;
+    dc:identifier "https://www.saveoney.ca/Network/Logical"@en ;
+    rdfs:label "Logical Network Ontology"@en ;
+    skos:prefLabel "Logical Network Ontology"@en ;
+    owl:versionInfo "1.0.0"@en ;
+    rdfs:comment "Ontology for describing a computer networks logical components."@en ;
+    dc:license <https://opensource.org/licenses/MIT> ;
+    dc:creator "Brent Ritchie"@en ;
+    dc:description "A comprehensive ontology for representing the logical components of computer networks."@en ;
+    # dc:source <https://github.com/yourusername/logical-network-ontology> ;
+    dc:language "en"@en ;
+    dc:format "application/rdf+xml" ;
+    dc:created "2023-12-10"^^xsd:date ;
+    dc:dateCopywrited "2023-12-10"^^xsd:date ;
+    dc:publisher "Saveoney" ;
+    skos:related pnet: ;
+    dc:format "text/turtle"@en ;
+    owl:imports <http://www.w3.org/2004/02/skos/core> ;
+    owl:imports <http://www.w3.org/2002/07/owl> .
+
+# Classes
+
+<NetworkForest> a owl:Class
+        , skos:Concept ;
+    rdfs:label "Network Forest"@en ;
+    skos:prefLabel "Network Forest"@en ;
+    skos:inScheme <> .
+
+<NetworkDomain> a owl:Class
+        , skos:Concept ;
+    rdfs:label "Network Domain"@en ;
+    skos:prefLabel "Network Domain"@en ;
+    skos:inScheme <> .
+
+<NetworkConnection> a owl:Class
+        , skos:Concept ;
+    rdfs:label "Network Connection"@en ;
+    skos:prefLabel "Network Connection"@en ;
+    skos:inScheme <> .
+
+<NetworkDevice> a owl:Class
+        , skos:ConceptScheme ;
+    owl:equivalentClass pnet:NetworkDevice ;
+    rdfs:label "Network Device"@en ;
+    skos:prefLabel "Network Device"@en ;
+    rdfs:comment "Any device that is present on the network."@en ;
+    skos:inScheme <> .
+
+<DCEDevice> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <NetworkDevice> ;
+    owl:equivalentClass pnet:DCEDevice ;
+    rdfs:label "Data Communication Equipment"@en ;
+    skos:prefLabel "Data Communication Equipment"@en ;
+    rdfs:comment "Any device that controls traffic on the network."@en ;
+    skos:broader <NetworkDevice> ;
+    skos:inScheme <> .
+
+<DTEDevice> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <NetworkDevice> ;
+    owl:equivalentClass pnet:DTEDevice ;
+    rdfs:label "Data Terminal Equipment"@en ;
+    skos:prefLabel "Data Terminal Equipment"@en ;
+    rdfs:comment "Any device that exchanges information on the network."@en ;
+    skos:broader <NetworkDevice> ;
+    skos:inScheme <> .
+
+<Host> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <DTEDevice> ;
+    rdfs:label "Host"@en ;
+    skos:prefLabel "Host"@en ;
+    skos:altLabel "Network Host"@en ;
+    rdfs:comment "Any network device on the network that participates in user applications."@en ;
+    skos:broader <DTEDevice> ;
+    skos:inScheme <> .
+
+<NetworkAddress> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:label "Network Address"@en ;
+    skos:prefLabel "Network Address"@en ;
+    skos:inScheme <> .
+
+<IPv4Address> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <NetworkAddress> ;
+    rdfs:label "IPv4 Address"@en ;
+    skos:prefLabel "IPv4 Address"@en ;
+    skos:inScheme <NetworkAddress> ;
+    owl:disjointWith <IPv6Address> .
+
+<IPv6Address> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <NetworkAddress> ;
+    rdfs:label "IPv6 Address"@en ;
+    skos:prefLabel "IPv6 Address"@en ;
+    skos:inScheme <NetworkAddress> ;
+    owl:disjointWith <IPv4Address> .
+
+<DNSRecord> a owl:Class
+        , skos:Concept ;
+    rdfs:label "DNS Record"@en ;
+    skos:prefLabel "DNS Record"@en ;
+    rdfs:comment "Represents a domain name system record."@en ;
+    skos:inScheme <> .
+
+<ARecord> a owl:Class
+        , skos:Concept ;
+    rdfs:label "A Record"@en ;
+    skos:prefLabel "A Record"@en ;
+    rdfs:comment "An address record that points to an IPv4 address."@en ;
+    skos:broader <DNSRecord> .
+
+<CNAMERecord> a owl:Class
+        , skos:Concept ;
+    rdfs:label "CNAME Record"@en ;
+    skos:prefLabel "CNAME Record"@en ;
+    skos:altLabel "Canonical Name Record"@en ;
+    skos:broader <DNSRecord> .
+
+<TXTRecord> a owl:Class
+        , skos:Concept ;
+    rdfs:label "TXT Record"@en ;
+    skos:prefLabel "TXT Record"@en ;
+    skos:altLabel "Text Record"@en ;
+    skos:broader <DNSRecord> .
+
+<CommunicationProtocol> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:label "Communication Protocol"@en ;
+    skos:prefLabel "Communication Protocol"@en ;
+    skos:inScheme <> .
+
+<NetworkProtocol> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <CommunicationProtocol> ;
+    rdfs:label "Network Protocol"@en ;
+    skos:prefLabel "Network Protocol"@en ;
+    rdfs:comment "A protocol that is used over a network connection."@en ;
+    skos:inScheme <CommunicationProtocol> .
+
+<TCP> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <NetworkProtocol> ;
+    owl:disjointWith <UDP>, <ICMP> ;
+    rdfs:label "TCP"@en ;
+    skos:prefLabel "TCP"@en ;
+    skos:altLabel "Transport Conntrol Protocol"@en ;
+    rdfs:comment "The transport control protocol."@en ;
+    skos:inScheme <NetworkProtocol> .
+
+<UDP> a owl:class
+        , skos:Concept ;
+    rdfs:subClassOf <NetworkProtocol> ;
+    owl:disjointWith <TCP>
+        , <ICMP> ;
+    rdfs:label "UDP"@en ;
+    skos:prefLabel "UDP"@en ;
+    skos:altLabel "User Datagram Protocol"@en ;
+    rdfs:comment "The user datagram protocol."@en ;
+    skos:inScheme <NetworkProtocol> .
+
+<ICMP> a owl:class
+        , skos:Concept ;
+    rdfs:subClassOf <NetworkProtocol> ;
+    owl:disjointWith <TCP>, <UDP> ;
+    rdfs:label "ICMP"@en ;
+    skos:prefLabel "ICMP"@en ;
+    skos:altLabel "Internet Control Message Protocol"@en ;
+    rdfs:comment "The internet control message protocol."@en ;
+    skos:inScheme <NetworkProtocol> .
+
+<MemoryProtocol> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <CommunicationProtocol> ;
+    rdfs:label "Memory Protocol"@en ;
+    skos:prefLabel "Memory Protocol"@en ;
+    rdfs:comment "Communication through local RAM."@en ;
+    skos:inScheme <CommunicationProtocol> .
+
+<FileProtocol> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <CommunicationProtocol> ;
+    rdfs:label "File Protocol"@en ;
+    skos:prefLabel "File Protocol"@en ;
+    rdfs:comment "Communication by using files."@en ;
+    skos:inScheme <CommunicationProtocol> .
+
+<NamedPipe> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <FileProtocol> ;
+    rdfs:label "Named Pipe"@en ;
+    skos:prefLabel "Named Pipe"@en ;
+    skos:inScheme <FileProtocol> .
+
+<Socket> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <NetworkProtocol> ;
+    rdfs:label "Socket"@en ;
+    skos:prefLabel "Socket"@en ;
+    rdfs:comment "Socket based communication."@en ;
+    skos:inScheme <FileProtocol> .
+
+<RawSocket> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Socket> ;
+    rdfs:label "Raw Socket"@en ;
+    skos:prefLabel "Raw Socket"@en ;
+    skos:broader <Socket> ;
+    <hasSubProtocol> <ICMP> .
+
+<DgramSocket> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Socket> ;
+    rdfs:label "DGRAM Socket"@en ;
+    skos:prefLabel "DGRAM Socket"@en ;
+    skos:altLabel "Datagram Socket"@en ;
+    skos:broader <Socket> ;
+    <hasSubProtocol> <UDP> .
+
+<StreamSocket> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Socket> ;
+    rdfs:label "Stream Socket"@en ;
+    skos:prefLabel "Stream Socket"@en ;
+    skos:broader <Socket> ;
+    <hasSubProtocol> <TCP> .
+
+<RDMSocket> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Socket> ;
+    rdfs:label "RDM Socket"@en ;
+    skos:prefLabel "RDM Socket"@en ;
+    skos:altLabel "Reliably Delivered Message Socket"@en ;
+    skos:broader <Socket> ;
+    <hasSubProtocol> <TCP> .
+
+<ConDGRAMSocket> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Socket> ;
+    rdfs:label "Connection-Oriented Datagram Socket"@en ;
+    skos:prefLabel "Connection-Oriented Datagram Socket"@en ;
+    skos:broader <Socket> ;
+    <hasSubProtocol> <UDP> .
+
+# Object Properties
+
+<hasDomain> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:label "has domain"@en ;
+    skos:prefLabel "has domain"@en ;
+    owl:inverseOf <inForest> ;
+    rdfs:domain <NetworkForest> ;
+    rdfs:range <NetworkDomain> .
+
+<inForest> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:label "in forest"@en ;
+    skos:prefLabel "in forest"@en ;
+    owl:inverseOf <hasDomain> ;
+    rdfs:domain <NetworkDomain> ;
+    rdfs:range <NetworkForest> .
+
+<hasAddress> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:label "has Address"@en ;
+    skos:prefLabel "has Address"@en ;
+    rdfs:domain <NetworkDevice> ;
+    rdfs:range <NetworkAddress> .
+
+<hasSubProtocol> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:label "has sub protocol"@en ;
+    skos:prefLabel "has sub protocol"@en ;
+    rdfs:domain <CommunicationProtocol> ;
+    rdfs:range <CommunicationProtocol> ;
+
+# Value Properties
+
+<hasAddressValue> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "has address value"@en ;
+    skos:prefLabel "has address value"@en ;
+    rdfs:domain <NetworkAddress> ;
+    rdfs:range xsd:string .

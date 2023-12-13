@@ -1,0 +1,137 @@
+@base <https://www.saveoney.ca/Application#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix pnet: <https://www.saveoney.ca/Network/Physical#> .
+
+# Ontology Specific
+
+<> a owl:Ontology
+        , skos:ConceptScheme ;
+    dc:identifier "https://www.saveoney.ca/Network/Logical"@en ;
+    rdfs:label "Application Ontology"@en ;
+    skos:prefLabel "Application Ontology"@en ;
+    owl:versionInfo "1.0.0"@en ;
+    rdfs:comment "Ontology for describing applications."@en ;
+    dc:license <https://opensource.org/licenses/MIT> ;
+    dc:creator "Brent Ritchie"@en ;
+    dc:description "A comprehensive ontology for representing applications."@en ;
+    # dc:source <https://github.com/yourusername/application-ontology> ;
+    dc:language "en"@en ;
+    dc:created "2023-12-10"^^xsd:date ;
+    dc:dateCopywrited "2023-12-10"^^xsd:date ;
+    dc:publisher "Saveoney" ;
+    skos:related pnet: ;
+    dc:format "text/turtle"@en ;
+    owl:imports <http://www.w3.org/2004/02/skos/core> ;
+    owl:imports <http://www.w3.org/2002/07/owl> .
+
+# Classes
+
+<Software> a rdfs:Class
+        , skos:ConceptScheme ;
+    rdfs:label "Software"@en ;
+    skos:prefLabel "Software"@en ;
+    dc:description "A generic representation of software."@en ;
+    skos:inScheme <> .
+
+<ControlApplication> a rdfs:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Software> ;
+    rdfs:label "Control Application"@en ;
+    skos:prefLabel "Control Application"@en ;
+    dc:description "An application primarily designed to control the resources of a host."@en ;
+    skos:inScheme <Software> .
+
+<OperatingSystem> a rdfs:Class
+        , skos:Concept ;
+    rdfs:subClassOf <ControlApplication> ;
+    rdfs:label "Operating System"@en ;
+    skos:prefLabel "Operating System"@en ;
+    dc:description "An operating system for some host."@en ;
+    skos:example "Linux"@en ;
+    skos:example "Unix"@en ;
+    skos:example "Microsoft Windows"@en ;
+    skos:example "Mac OS"@en ;
+    skos:broader <ControlApplication> ;
+    skos:inScheme <Software> .
+
+<ServerApplication> a rdfs:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Software> ;
+    rdfs:label "Server Application"@en ;
+    skos:prefLabel "Server Application"@en ;
+    dc:description "An application primarily designed to be run from a server."@en ;
+    skos:inScheme <Software> .
+
+<Database> a rdfs:Class
+        , skos:Concept ;
+    rdfs:subClassOf <ServerApplication> ;
+    rdfs:label "Database"@en ;
+    skos:prefLabel "Database"@en ;
+    dc:description "Database software."@en ;
+    skos:broader <ServerApplication> ;
+    skos:inScheme <Software> .
+
+<WebApplication> a rdfs:Class
+        , skos:Concept ;
+    rdfs:subClassOf <ServerApplication> ;
+    rdfs:label "Web Application"@en ;
+    skos:prefLabel "Web Application"@en ;
+    dc:description "A web application."@en ;
+    skos:broader <ServerApplication> ;
+    skos:inScheme <Software> .
+
+<SoftwareVersion> a rdfs:Class
+        , skos:ConceptScheme ;
+    rdfs:label "Software Version"@en ;
+    skos:prefLabel "Software Version"@en ;
+    dc:description "A generic representation of a software version."@en ;
+    skos:inScheme <Software> .
+
+<SemanticVersion> a rdfs:Class
+        , skos:Concept ;
+    rdfs:subClassOf <SoftwareVersion> ;
+    rdfs:label "Semantic Version"@en ;
+    skos:prefLabel "Semantic Version"@en ;
+    dc:description "A semantic version."@en ;
+    rdfs:seeAlso <https://semver.org/> ;
+    dc:seeAlso <https://semver.org/> ;
+    skos:broader <SoftwareVersion> ;
+    skos:inScheme <Software> .
+
+# Object Properties
+
+<hasVersion> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "has version"@en ;
+    skos:prefLabel "has version"@en ;
+    dc:description "A specific version of software."@en ;
+    owl:inverseOf <versionOf> ;
+    rdfs:domain <Software> ;
+    rdfs:range <SoftwareVersion> ;
+    skos:inScheme <SoftwareVersion> .
+
+<versionOf> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "version of"@en ;
+    skos:prefLabel "version of"@en ;
+    dc:description "A specific version of software."@en ;
+    owl:inverseOf <hasVersion> ;
+    rdfs:domain <SoftwareVersion> ;
+    rdfs:range <Software> ;
+    skos:inScheme <SoftwareVersion> .
+
+# Datatype Properties
+
+<isVersion> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "is version"@en ;
+    skos:prefLabel "is version"@en ;
+    dc:description "A version string."@en ;
+    rdfs:domain <SoftwareVersion> ;
+    rdfs:range xsd:string ;
+    skos:inScheme <SoftwareVersion> .

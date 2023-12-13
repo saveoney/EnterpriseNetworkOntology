@@ -1,0 +1,361 @@
+@base <https://www.saveoney.ca/Network/Physical#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix lnet: <https://www.saveoney.ca/Network/Logical#> .
+
+# Ontology Specific
+
+<> a owl:Ontology
+        , skos:Concept ;
+    dc:identifier "https://www.saveoney.ca/Network/Physical"@en ;
+    rdfs:label "Physical Network Ontology"@en ;
+    skos:prefLabel "Physical Network Ontology"@en;
+    rdfs:comment "Ontology for describing physical components and topology of computer networks."@en ;
+    owl:versionInfo "1.0.0"@en ;
+    dc:license <https://opensource.org/licenses/MIT> ;
+    dc:creator "Brent Ritchie"@en ;
+    # dc:source <https://github.com/yourusername/logical-network-ontology> ;
+    dc:language "en"@en ;
+    dc:format "text/turtle"@en ;
+    dc:created "2023-12-10"^^xsd:date ;
+    dc:dateCopywrited "2023-12-10"^^xsd:date ;
+    dc:publisher "Saveoney"@en ;
+    skos:related lnet: ;
+    owl:imports <http://www.w3.org/2004/02/skos/core> ;
+    owl:imports <http://www.w3.org/2002/07/owl> .
+
+# Classes
+
+<PhysicalNetwork> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:label "Physical Network"@en ;
+    skos:prefLabel "Physical Network"@en ;
+    rdfs:comment "Represents the entire physical network infrastructure."@en .
+
+<NetworkDevice> a owl:Class
+        , skos:Concept ;
+    owl:equivalentClass lnet:NetworkDevice ;
+    rdfs:label "Physical Network Device"@en ;
+    skos:prefLabel "Physical Network Device"@en ;
+    rdfs:comment "Any physical device present in the network infrastructure."@en ;
+    skos:inScheme <PhysicalNetwork> .
+
+<DCEDevice> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <NetworkDevice> ;
+    owl:equivalentClass lnet:DCEDevice ;
+    rdfs:label "Data Communication Equipment"@en ;
+    skos:prefLabel "Data Communication Equipment"@en ;
+    rdfs:comment "Any device that controls traffic on the network."@en ;
+    skos:broader <NetworkDevice> ;
+    skos:inScheme <> .
+
+<Modem> a owl:Class ;
+        , skos:Concept ;
+    rdfs:subClassOf <DCEDevice> ;
+    rdfs:label "Modem"@en ;
+    skos:prefLabel "Modem"@en ;
+    rdfs:comment "A device to connect to the public Internet."@en ;
+    skos:broader <DCEDevice> ;
+    skos:inScheme <DCEDevice> .
+
+<Firewall> a owl:Class ;
+        , skos:Concept ;
+    rdfs:subClassOf <DCEDevice> ;
+    rdfs:label "Firewall"@en ;
+    skos:prefLabel "Firewall"@en ;
+    rdfs:comment "A device that controls access between two points."@en ;
+    skos:broader <DCEDevice> ;
+    skos:inScheme <DCEDevice> .
+
+<WirelessAccessPoint> a owl:Class ;
+        , skos:Concept ;
+    rdfs:subClassOf <DCEDevice> ;
+    rdfs:label "Wireless Access Point"@en ;
+    skos:prefLabel "Wireless Access Point"@en ;
+    rdfs:comment "A device that allows another device to connect to the network wirelessly."@en ;
+    skos:broader <DCEDevice> ;
+    skos:inScheme <DCEDevice> .
+
+<NetworkSwitch> a owl:Class ;
+        , skos:Concept ;
+    rdfs:subClassOf <DCEDevice> ;
+    rdfs:label "Network Switch"@en ;
+    skos:prefLabel "Network Switch"@en ;
+    rdfs:comment "A device that directs traffic between devices within a network."@en ;
+    skos:broader <DCEDevice> ;
+    skos:inScheme <DCEDevice> .
+
+<DTEDevice> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <NetworkDevice> ;
+    owl:equivalentClass lnet:DTEDevice ;
+    rdfs:label "Data Terminal Equipment"@en ;
+    skos:prefLabel "Data Terminal Equipment"@en ;
+    rdfs:comment "Any device that exchanges information on the network."@en ;
+    skos:broader <NetworkDevice> ;
+    skos:inScheme <> .
+
+<Terminal> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <DTEDevice> ;
+    rdfs:label "Terminal"@en ;
+    skos:prefLabel "Terminal"@en ;
+    rdfs:comment "A device that participates in network services."@en ;
+    skos:broader <DTEDevice> ;
+    skos:inScheme <> .
+
+<Workstation> a owl:Class ;
+        , skos:Concept ;
+    rdfs:subClassOf <DCEDevice> ;
+    rdfs:label "Workstation"@en ;
+    skos:prefLabel "Workstation"@en ;
+    rdfs:comment "A general use terminal that has it's own processor and applications."@en ;
+    skos:broader <Terminal> ;
+    skos:inScheme <Terminal> .
+
+<Server> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <DTEDevice> ;
+    rdfs:label "Server"@en ;
+    skos:prefLabel "Server"@en ;
+    rdfs:comment "A device that provides services on a network."@en ;
+    skos:broader <DTEDevice> ;
+    skos:inScheme <> .
+
+<AppServer> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <Server> ;
+    rdfs:label "Application Server"@en ;
+    skos:prefLabel "Application Server"@en ;
+    rdfs:comment "A device that provides applications to other devices on a network."@en ;
+    skos:broader <Server> ;
+    skos:inScheme <> .
+
+<NetworkAttachedStorage> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:subClassOf <Server> ;
+    rdfs:label "Network Attached Storage"@en ;
+    skos:prefLabel "Network Attached Storage"@en ;
+    skos:altLabel "NAS"@en ;
+    rdfs:comment "A device that provides storage space on a network."@en ;
+    skos:broader <Server> ;
+    skos:inScheme <> .
+
+<ConnectionMedium> a owl:Class
+        , skos:ConceptScheme ;
+    rdfs:label "Connection Medium"@en ;
+    skos:prefLabel "Connection Medium"@en .
+
+<Cable> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <ConnectionMedium> ;
+    rdfs:label "Network Cable"@en ;
+    skos:prefLabel "Network Cable"@en ;
+    rdfs:comment "Represents a physical cable used for network connections."@en ;
+    skos:inScheme <ConnectionMedium> .
+
+<FibreOpticCable> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Cable> ;
+    rdfs:label "Fibre Optic Network Cable"@en ;
+    skos:prefLabel "Fibre Optic Cable"@en ;
+    rdfs:comment "Represents a fibre optic cable used for network connections."@en ;
+    skos:broader <Cable> ;
+    skos:inScheme <ConnectionMedium> .
+
+<TwistedPairCable> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <Cable> ;
+    rdfs:label "Twisted Pair Network Cable"@en ;
+    skos:prefLabel "Twisted Pair Cable"@en ;
+    rdfs:comment "Represents a twisted pair cable used for network connections."@en ;
+    skos:broader <Cable> ;
+    skos:inScheme <ConnectionMedium> .
+
+<Cat3Cable> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <TwistedPairCable> ;
+    rdfs:label "Cat 3 Twisted Pair Network Cable"@en ;
+    skos:prefLabel "Cat 3 Twisted Pair Cable"@en ;
+    rdfs:comment "Represents a cat 3 twisted pair cable used for network connections."@en ;
+    <hasBandwidth> "16"^^xsd:decimal ;
+    skos:broader <TwistedPairCable> ;
+    skos:inScheme <ConnectionMedium> .
+
+<Cat6Cable> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <TwistedPairCable> ;
+    rdfs:label "Cat 6 Twisted Pair Network Cable"@en ;
+    skos:prefLabel "Cat 6 Twisted Pair Cable"@en ;
+    rdfs:comment "Represents a cat 6 twisted pair cable used for network connections."@en ;
+    <hasBandwidth> "250"^^xsd:decimal ;
+    skos:broader <TwistedPairCable> ;
+    skos:inScheme <ConnectionMedium> .
+
+<Cat8_2Cable> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <TwistedPairCable> ;
+    rdfs:label "Cat 8.2 Twisted Pair Network Cable"@en ;
+    skos:prefLabel "Cat 8.2 Twisted Pair Cable"@en ;
+    rdfs:comment "Represents a cat 8.2 twisted pair cable used for network connections."@en ;
+    <hasBandwidth> "2000"^^xsd:decimal ;
+    skos:broader <TwistedPairCable> ;
+    skos:inScheme <ConnectionMedium> .
+
+<RadioWave> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <ConnectionMedium> ;
+    rdfs:label "Radio Propagation"@en ;
+    skos:prefLabel "Radio"@en ;
+    rdfs:comment "Represents a radio channel used for network connections."@en ;
+    skos:inScheme <ConnectionMedium> .
+
+<802_11> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <RadioWave> ;
+    rdfs:label "802.11 Standard"@en ;
+    skos:prefLabel "802.11"@en ;
+    rdfs:comment "Represents the 802.11 standard for network connections."@en ;
+    skos:broader <RadioWave> ;
+    skos:inScheme <ConnectionMedium> .
+
+<802_11a> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <RadioWave> ;
+    rdfs:label "802.11a Standard"@en ;
+    skos:prefLabel "802.11a"@en ;
+    rdfs:comment "Represents the 802.11a standard for network connections."@en ;
+    skos:broader <RadioWave> ;
+    skos:inScheme <ConnectionMedium> .
+
+<802_11b> a owl:Class
+        , skos:Concept ;
+    rdfs:subClassOf <RadioWave> ;
+    rdfs:label "802.11b Standard"@en ;
+    skos:prefLabel "802.11b"@en ;
+    rdfs:comment "Represents the 802.11b standard for network connections."@en ;
+    skos:broader <RadioWave> ;
+    skos:inScheme <ConnectionMedium> .
+
+<Connection> a owl:Class
+        , skos:Concept ;
+    rdfs:label "Network Connection"@en ;
+    skos:prefLabel "Network Connection"@en ;
+    rdfs:comment "Represents a physical connection between network devices."@en ;
+    skos:inScheme <PhysicalNetwork> .
+
+<UnshieldedTwistedPair> a owl:Class
+        , skos:Concept ;
+    rdfs:label "Unshielded Twisted Pair"@en ;
+    skos:prefLabel "Unshielded Twisted Pair"@en ;
+    dc:description "A twisted pair cable that is not shielded."@en ;
+    skos:related <ShieldedTwistedPair>
+        , <FoilShieldedTwistedPair> .
+
+<ShieldedTwistedPair> a owl:Class
+        , skos:Concept ;
+    rdfs:label "Shielded Twisted Pair"@en ;
+    skos:prefLabel "Shielded Twisted Pair"@en ;
+    dc:description "A twisted pair cable that is screen shielded."@en ;
+    skos:related <FoilShieldedTwistedPair>
+        , <UnshieldedTwistedPair> .
+
+<FoilShieldedTwistedPair> a owl:Class
+        , skos:Concept ;
+    rdfs:label "Foil Shielded Twisted Pair"@en ;
+    skos:prefLabel "Foil Shielded Twisted Pair"@en ;
+    dc:description "A twisted pair cable that is foil shielded."@en ;
+    skos:related <ShieldedTwistedPair>
+        , <UnshieldedTwistedPair> .
+
+<TwistedPairShielding> a rdf:Alt ;
+    rdf:_1 <UnshieldedTwistedPair> ;
+    rdf:_2 <ShieldedTwistedPair> ;
+    rdf:_3 <FoilShieldedTwistedPair> .
+
+# Object Properties
+
+<connectsTo> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:label "connects to"@en ;
+    skos:prefLabel "connects to"@en ;
+    rdfs:comment "Specifies a connection between network devices."@en ;
+    owl:inverseOf <connectsFrom> ;
+    rdfs:domain <Connection> ;
+    rdfs:range <NetworkDevice> .
+
+<connectsFrom> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:label "connects from"@en ;
+    skos:prefLabel "connects from"@en ;
+    rdfs:comment "Specifies a connection between network devices."@en ;
+    owl:inverseOf <connectsTo> ;
+    rdfs:domain <NetworkDevice> ;
+    rdfs:range <Connection> .
+
+<usesConnectionMedium> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:label "uses connection medium"@en ;
+    skos:prefLabel "uses connection medium"@en ;
+    rdfs:comment "Specifies the connection medium used for a network connection."@en ;
+    rdfs:domain <Connection> ;
+    rdfs:range <ConnectionMedium> .
+
+<usesCable> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:subClassOf <usesConnectionMedium> ;
+    rdfs:label "uses cable"@en ;
+    skos:prefLabel "uses cable"@en ;
+    rdfs:comment "Specifies the cable used for a network connection."@en ;
+    rdfs:domain <Connection> ;
+    rdfs:range <Cable> ;
+    skos:broader <usesConnectionMedium> .
+
+<usesRadioWave> a owl:ObjectProperty
+        , skos:Concept ;
+    rdfs:subClassOf <usesConnectionMedium> ;
+    rdfs:label "uses radio wave"@en ;
+    skos:prefLabel "uses radio wave"@en ;
+    rdfs:comment "Specifies the radio wave used for a network connection."@en ;
+    rdfs:domain <Connection> ;
+    rdfs:range <RadioWave> ;
+    skos:broader <usesConnectionMedium> .
+
+# DataType Properties
+
+<hasDataRate> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "has throughput"@en ;
+    skos:prefLabel "has throughput"@en ;
+    rdfs:comment "Specifies the approximate data rate for a connection medium in Mbits/s."@en ;
+    rdfs:domain <ConnectionMedium> ;
+    rdfs:range  xsd:decimal .
+
+<hasBandwidth> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "has bandwidth"@en ;
+    skos:prefLabel "has bandwidth"@en ;
+    rdfs:comment "Specifies the approximate bandwidth for a connection medium in MHz."@en ;
+    rdfs:domain <ConnectionMedium> ;
+    rdfs:range  xsd:decimal .
+
+<hasFrequency> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "has frequency"@en ;
+    skos:prefLabel "has frequency"@en ;
+    rdfs:comment "Specifies the approximate frequency for a connection medium in GHz."@en ;
+    rdfs:domain <ConnectionMedium> ;
+    rdfs:range  xsd:decimal .
+
+<hasShielding> a owl:DatatypeProperty
+        , skos:Concept ;
+    rdfs:label "has shielding"@en ;
+    skos:prefLabel "has shielding"@en ;
+    rdfs:comment "Specifies the type of shielding present on a tisted pair cable."@en ;
+    rdfs:domain <TwistedPairCable> ;
+    rdfs:range  <TwistedPairShielding> .
