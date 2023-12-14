@@ -19,7 +19,7 @@
     dc:license <https://opensource.org/licenses/MIT> ;
     dc:creator "Brent Ritchie"@en ;
     dc:description "A comprehensive ontology for representing applications."@en ;
-    # dc:source <https://github.com/yourusername/application-ontology> ;
+    dc:source <https://github.com/saveoney/EnterpriseNetworkOntology/blob/main/Application/Application.ttl> ;
     dc:language "en"@en ;
     dc:created "2023-12-10"^^xsd:date ;
     dc:dateCopywrited "2023-12-10"^^xsd:date ;
