@@ -18,7 +18,7 @@
     owl:versionInfo "1.0.0"@en ;
     dc:license <https://opensource.org/licenses/MIT> ;
     dc:creator "Brent Ritchie"@en ;
-    # dc:source <https://github.com/yourusername/logical-network-ontology> ;
+    dc:source <https://github.com/saveoney/EnterpriseNetworkOntology/blob/main/Network/Physical/PhysicalNetwork.ttl> ;
     dc:language "en"@en ;
     dc:format "text/turtle"@en ;
     dc:created "2023-12-10"^^xsd:date ;
