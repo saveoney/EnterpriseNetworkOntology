@@ -19,7 +19,7 @@
     dc:license <https://opensource.org/licenses/MIT> ;
     dc:creator "Brent Ritchie"@en ;
     dc:description "A comprehensive ontology for representing the logical components of computer networks."@en ;
-    # dc:source <https://github.com/yourusername/logical-network-ontology> ;
+    dc:source <https://github.com/saveoney/EnterpriseNetworkOntology/tree/main/Network/Logical/LogicalNetwork.ttl> ;
     dc:language "en"@en ;
     dc:format "application/rdf+xml" ;
     dc:created "2023-12-10"^^xsd:date ;
