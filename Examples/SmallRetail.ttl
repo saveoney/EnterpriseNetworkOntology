@@ -28,26 +28,38 @@
 
 # Individuals
 
-<isp1Modem> a pnet:Modem .
+<isp1Modem> a pnet:Modem ;
+    owl:NamedIndividual .
 
-<firewall1> a pnet:Firewall .
+<firewall1> a pnet:Firewall ;
+    owl:NamedIndividual .
 
-<ap1> a pnet:WirelessAccessPoint .
+<ap1> a pnet:WirelessAccessPoint ;
+    owl:NamedIndividual .
 
-<nas1> a pnet:NetworkAttachedStorage .
+<nas1> a pnet:NetworkAttachedStorage ;
+    owl:NamedIndividual .
 
-<gigaswitch> a pnet:NetworkSwitch .
+<gigaswitch> a pnet:NetworkSwitch ;
+    owl:NamedIndividual .
 
-<officews> a pnet:Workstation .
+<officews> a pnet:Workstation ;
+    owl:NamedIndividual .
 
-<appserver> a pnet:AppServer .
+<appserver> a pnet:AppServer ;
+    owl:NamedIndividual .
 
-<videoserver> a <SurveillanceServer> .
+<videoserver> a <SurveillanceServer> ;
+    owl:NamedIndividual .
 
-<multiswitch> a pnet:Switch .
+<multiswitch> a pnet:Switch ;
+    owl:NamedIndividual .
 
-<pos1> a <PointOfSale> .
+<pos1> a <PointOfSale> ;
+    owl:NamedIndividual .
 
-<pos2> a <PointOfSale> .
+<pos2> a <PointOfSale> ;
+    owl:NamedIndividual .
 
-<pos3> a <PointOfSale> .
+<pos3> a <PointOfSale> ;
+    owl:NamedIndividual .
